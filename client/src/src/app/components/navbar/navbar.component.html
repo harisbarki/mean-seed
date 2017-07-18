@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default navbar-inverse" style="border: 0; padding: 0; margin: 0; border-radius: 0">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" [routerLink]="['']">Logo</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
+				<li><a class="nav-link" [routerLink]="['/about']" routerLinkActive="active">About</a></li>
+				<li><a class="nav-link" [routerLink]="['/search']" routerLinkActive="active">Search</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>

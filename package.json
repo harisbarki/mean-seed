@@ -1,0 +1,34 @@
+{
+  "name": "mean-seed",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "install_packages": "npm install && cd ./client/src && npm install",
+    "prestart": "npm run install_packages",
+    "start": "concurrently \"npm run build:client:prod\" \"npm run start:server\" ",
+    "start:server": "nodemon ./bin/www",
+    "start:watch:dev": "concurrently \"npm run build:watch:client:dev\" \"npm run start:server\" ",
+    "start:watch:prod": "concurrently \"npm run build:watch:client:prod\" \"npm run start:server\" ",
+    "build": "npm run build:client:prod",
+    "build:client:dev": "cd ./client/src && npm run build:dev && cd ../..",
+    "build:client:prod": "cd ./client/src && npm run build:prod && cd ../..",
+    "build:watch:client:dev": "cd ./client/src && npm run build:watch:dev && cd ../..",
+    "build:watch:client:prod": "cd ./client/src && npm run build:watch:prod && cd ../.."
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "browser-sync": "^2.18.12",
+    "cookie-parser": "~1.4.3",
+    "concurrently": "^3.5.0",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "morgan": "~1.8.1",
+    "node-sass-middleware": "0.9.8",
+    "nodemon": "^1.11.0",
+    "pug": "~2.0.0-beta11",
+    "serve-favicon": "~2.4.2"
+  },
+  "engines": {
+    "node": ">=6.11.1"
+  }
+}
