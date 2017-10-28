@@ -1,14 +1,28 @@
 import {RouterModule, Routes} from '@angular/router';
-import {SearchComponent} from './search.component'
+import {NgModule} from "@angular/core";
 
-const appRoutes: Routes = [
+import {SearchComponent} from './search.component';
+import {SearchPageComponent} from './pages/';
+
+const searchRoutes: Routes = [
 	{
-		path: '', children: [
+		path: '',
+		component: SearchComponent,
+		children: [
 		{
-			path: '', component: SearchComponent
+			path: '', component: SearchPageComponent
 		},
 	]
 	},
 ];
 
-export const routes = RouterModule.forChild(appRoutes);
+@NgModule({
+	imports: [RouterModule.forChild(searchRoutes)],
+	exports: [RouterModule]
+})
+export class SearchRoutingModule {
+}
+
+// So they can be imported in the main module easily
+export const routingComponents = [SearchPageComponent];
+

@@ -1,5 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
-import {AboutComponent, HomeComponent, NoContentComponent, LoginComponent} from './components/'
+import {NgModule} from "@angular/core";
+
+import {AboutComponent, HomeComponent, NoContentComponent, LoginComponent} from './pages/'
 
 const appRoutes: Routes = [
 	{path: '', component: HomeComponent},
@@ -9,4 +11,12 @@ const appRoutes: Routes = [
 	{path: '**', component: NoContentComponent}
 ];
 
-export const routes = RouterModule.forRoot(appRoutes);
+@NgModule({
+	imports: [RouterModule.forRoot(appRoutes)],
+	exports: [RouterModule]
+})
+export class AppRoutingModule {
+}
+
+// So they can be imported in the main module easily
+export const routingComponents = [AboutComponent, HomeComponent, NoContentComponent, LoginComponent];

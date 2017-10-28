@@ -4,23 +4,20 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
-import {AboutComponent, HomeComponent, NavbarComponent, NoContentComponent, LoginComponent} from './components/';
-import {routes} from './app.routes';
+import {NavbarComponent} from './components/';
+import {AppRoutingModule, routingComponents} from './app.routes';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		HomeComponent,
-		AboutComponent,
 		NavbarComponent,
-		LoginComponent,
-		NoContentComponent
+		routingComponents
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		HttpModule,
-		routes
+		AppRoutingModule
 	],
 	providers: [
 	],
