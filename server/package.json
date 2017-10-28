@@ -1,0 +1,26 @@
+{
+  "name": "mean-seed",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./src/server.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.17.1",
+    "browser-sync": "^2.18.12",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "jsonwebtoken": "^7.4.3",    
+    "mongoose": "^4.11.4",
+    "mongoose-unique-validator": "^1.0.5",
+    "morgan": "~1.8.1",
+    "node-sass-middleware": "0.9.8",
+    "nodemon": "^1.12.0",
+    "pug": "~2.0.0-beta11",
+    "serve-favicon": "~2.4.2"
+  },
+  "engines": {
+    "node": ">=6.11.1"
+  }
+}

@@ -1,6 +1,6 @@
 # MEAN Seed
 
-### MongoDB - Coming Soon
+### MongoDB
 ### Express
 ### Angular 4
 ### Node

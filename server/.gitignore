@@ -1,5 +1,5 @@
 *.class
-*.log
+/npm-debug.log
 
 # sbt specific
 .cache
@@ -56,3 +56,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+
+
+# Config files
+/.config
+/client_dist
