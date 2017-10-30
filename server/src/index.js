@@ -5,6 +5,7 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let sassMiddleware = require('node-sass-middleware');
+require('./shared/database'); // database make connection
 
 let app = express();
 
