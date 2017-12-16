@@ -1,4 +1,4 @@
-# Angular 4 seed
+# Angular 5 seed
 
 ## Development server
 
@@ -12,4 +12,4 @@ Navigate to `http://localhost:4200/`.
 
 Run `npm run build:dev` to build the dev project. 
 Run `npm run build:prod` to build the dev project. 
-The build artifacts will be stored in the `dist/` directory. 
+The build artifacts will be stored in the `../server/client_dist/` directory. 
