@@ -22,7 +22,7 @@
     "upload:prod": "npm run build:client:prod && npm run upload"
   },
   "dependencies": {
-    "concurrently": "^3.5.0",
+    "concurrently": "^3.5.1",
     "npm-delay": "^1.0.4"
   },
   "engines": {
