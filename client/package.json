@@ -23,7 +23,6 @@
   "private": false,
   "dependencies": {
     "@angular/animations": "^5.1.1",
-    "@angular/cli": "^1.6.1",
     "@angular/common": "^5.1.1",
     "@angular/compiler": "^5.1.1",
     "@angular/core": "^5.1.1",
