@@ -14,7 +14,7 @@ module.exports = function(app) {
 		if (fs.existsSync(clientPath)) {
 			res.sendFile(path.join(__dirname + clientPath));
 		} else {
-			console.log('You are running hmr please go to 127.0.0.1:4200');
+			console.log('<p>Either your frontend is not compiled or you are running hmr, if latter then please go to 127.0.0.1:4200');
 			res.send("<p>You are running hmr please go to <a href='http://127.0.0.1:4200'>127.0.0.1:4200</a>"
 				+ "<br>Also you need to start the browser without security for cross scripting if you want to make api calls to the backend"
 				+ "<br>Example command:"
