@@ -1,4 +1,4 @@
-# Angular 5 seed
+# Angular 6 seed
 
 ## Development server
 

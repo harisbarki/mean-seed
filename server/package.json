@@ -3,24 +3,26 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodemon ./src/server.js"
+    "start": "node ./src/server.js",
+    "watch:nodemon": "nodemon ./src/server.js",
+    "watch:debug": "nodemon --inspect ./src/server.js"
   },
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "browser-sync": "^2.18.12",
+    "body-parser": "^1.18.3",
+    "browser-sync": "^2.24.4",
     "cookie-parser": "~1.4.3",
     "debug": "^3.1.0",
-    "express": "^4.16.2",
-    "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.13.7",
-    "mongoose-unique-validator": "^1.0.5",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.2",
+    "mongoose": "^5.1.4",
+    "mongoose-unique-validator": "^2.0.1",
     "morgan": "^1.9.0",
     "node-sass-middleware": "^0.11.0",
-    "nodemon": "^1.13.3",
-    "pug": "~2.0.0-beta11",
-    "serve-favicon": "~2.4.2"
+    "nodemon": "^1.17.5",
+    "pug": "~2.0.3",
+    "serve-favicon": "~2.5.0"
   },
   "engines": {
-    "node": ">=6.11.1"
+    "node": ">=9.11.1"
   }
 }

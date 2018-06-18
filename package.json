@@ -1,31 +1,35 @@
 {
-  "name": "mean-seed",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "install_packages": "npm install && concurrently \"cd ./client && npm install\" \"cd ./server && npm install\" ",
-    "prestart": "npm run install_packages",
-    "start": "concurrently \"npm run build:client:prod\" \"npm run start:backend\" ",
-    "start:backend": "cd ./server && npm start && cd ..",
-    "start:hmr": "concurrently \"npm run hmr\" \"npm run delay && npm run start:backend\" ",
-    "start:watch:dev": "concurrently \"npm run build:watch:client:dev\" \"npm run start:backend\" ",
-    "start:watch:prod": "concurrently \"npm run build:watch:client:prod\" \"npm run start:backend\" ",
-    "build": "npm run build:client:prod",
-    "build:client:dev": "cd ./client && npm run build:dev && cd ..",
-    "build:client:prod": "cd ./client && npm run build:prod && cd ..",
-    "build:watch:client:dev": "cd ./client && npm run build:watch:dev && cd ..",
-    "build:watch:client:prod": "cd ./client && npm run build:watch:prod && cd ..",
-    "delay": "node ./node_modules/npm-delay 5000",
-    "hmr": "cd ./client && npm run start:hmr && cd ..",
-    "upload": "cd server && npm run upload",
-    "upload:dev": "npm run build:client:dev && npm run upload",
-    "upload:prod": "npm run build:client:prod && npm run upload"
-  },
-  "dependencies": {
-    "concurrently": "^3.5.1",
-    "npm-delay": "^1.0.4"
-  },
-  "engines": {
-    "node": ">=6.11.1"
-  }
+	"name": "mean-seed",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"install_packages": "npm install && concurrently \"cd ./client && npm install\" \"cd ./server && npm install\" ",
+		"prestart": "npm run install_packages",
+		"start": "concurrently \"npm run build:client:dev\" \"npm run start:backend\" ",
+		"start:backend": "cd ./server && npm start && cd ..",
+		"build": "npm run build:client:prod",
+		"build:client:dev": "cd ./client && npm run build:dev && cd ..",
+		"build:client:prod": "cd ./client && npm run build:prod && cd ..",
+		"build:watch:client:dev": "cd ./client && npm run build:watch:dev && cd ..",
+		"build:watch:client:prod": "cd ./client && npm run build:watch:prod && cd ..",
+		"watch:backend": "cd ./server && npm start:nodemon && cd ..",
+		"watch:backend:debug": "cd ./server && npm run watch:debug && cd ..",
+		"watch:hmr": "concurrently \"npm run hmr\" \"npm run delay && npm run start:backend\" ",
+		"watch:hmr:debug": "concurrently \"npm run hmr\" \"npm run delay && npm run start:backend:debug\" ",
+		"watch:watch:dev": "concurrently \"npm run build:watch:client:dev\" \"npm run start:backend\" ",
+		"watch:watch:prod": "concurrently \"npm run build:watch:client:prod\" \"npm run start:backend\" ",
+		"back": "npm run watch:backend:debug",
+		"hmr": "cd ./client && npm run start:hmr && cd ..",
+		"upload": "cd server && npm run upload",
+		"upload:dev": "npm run build:client:dev && npm run upload",
+		"upload:prod": "npm run build:client:prod && npm run upload",
+		"delay": "node ./node_modules/npm-delay 10000"
+	},
+	"dependencies": {
+		"concurrently": "^3.5.1",
+		"npm-delay": "^1.0.4"
+	},
+	"engines": {
+		"node": ">=6.11.1"
+	}
 }

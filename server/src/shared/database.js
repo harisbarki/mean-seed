@@ -2,7 +2,7 @@ const Mongoose = require('mongoose');
 const config = require('./config/config');
 
 Mongoose.Promise = global.Promise;
-Mongoose.connect(config.mongodb.host, {useMongoClient: true});
+Mongoose.connect(config.mongodb.host, {});
 const db = Mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function callback() {
