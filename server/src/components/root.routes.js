@@ -1,11 +1,12 @@
 let fs = require('fs');
+const path = require('path');
 
 let usersRoutes = require('./user/user.routes');
 let config = require('../shared/config/config');
 let seedRoutes = require('./seed/seed.routes');
 let contactUsRoutes = require('./contact-us/contact-us.routes');
 
-let clientPath = '../../client_dist/index.html';
+let clientPath = 'client_dist/index.html';
 
 module.exports = function(app) {
 
@@ -14,6 +15,7 @@ module.exports = function(app) {
 	app.use('/api/contact-us', contactUsRoutes);
 
 	app.get('*', function (req, res) {
+		console.log(path.join(config.rootServerDirectory + clientPath));
 		if (fs.existsSync(path.join(config.rootServerDirectory + clientPath))) {
 			res.sendFile(path.join(config.rootServerDirectory + clientPath));
 		}  else {
