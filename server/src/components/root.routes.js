@@ -1,6 +1,7 @@
 let fs = require('fs');
 
 let usersRoutes = require('./user/user.routes');
+let seedRoutes = require('./seed/seed.routes');
 let contactUsRoutes = require('./contact-us/contact-us.routes');
 
 let clientPath = '../../client_dist/index.html';
@@ -8,6 +9,7 @@ let clientPath = '../../client_dist/index.html';
 module.exports = function(app) {
 
 	app.use('/api/user', usersRoutes);
+	app.use('/api/seed', seedRoutes);
 	app.use('/api/contact-us', contactUsRoutes);
 
 	app.get('*', function (req, res) {
