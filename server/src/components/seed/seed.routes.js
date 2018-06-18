@@ -3,10 +3,6 @@ const router = express.Router();
 
 const SeedCtrl = require('./seed.controller');
 
-const MODEL_NAME = `seed`;
-const FILE_NAME = `seed.routes.js`;
-
-
 // Get by ID
 router.get('/', (req, res) => {
 	const id = req.query['_id'] ? req.query['_id'] : '';
