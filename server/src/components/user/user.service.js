@@ -1,42 +1,59 @@
-'use strict';
-const Config = require('../../shared/config/config');
-const crypto = require('crypto');
-const algorithm = 'aes-256-ctr';
-const privateKey = Config.key.privateKey;
+const User = require('./user.model');
+const ROLES = require('../../shared/constants');
 
-exports.decrypt = (password) => {
-	return decrypt(password);
+//= =======================================
+// Authorization Middleware
+//= =======================================
+
+// Role authorization check
+let roleAuthorization = function (requiredRole) {
+	return function (req, res, next) {
+		const user = req.user;
+
+		User.findById(user._id, (err, foundUser) => {
+			if (err) {
+				res.status(422).json({ error: 'No user was found.' });
+				return next(err);
+			}
+
+			// If user is found, check role.
+			if (getRole(foundUser.role) >= getRole(requiredRole)) {
+				return next();
+			}
+
+			return res.status(401).json({ error: 'You are not authorized to view this content.' });
+		});
+	};
 };
 
-exports.encrypt = (password) => {
-	return encrypt(password);
+// Set user info from request
+let setUserInfo = function setUserInfo(request) {
+	const getUserInfo = {
+		_id: request._id,
+		profile: request.profile,
+		email: request.email,
+		role: request.role
+	};
+
+	return getUserInfo;
 };
 
-exports.sentMailVerificationLink = (user, token) => {
-	let textLink = "http://" + Config.express.host + ":" + Config.express.port + "/" + Config.email.verifyEmailUrl + "/" + token;
-	let sender = `Barki Team<${Config.email.user}>`;
-	let mailBody = `<p>Thanks for Registering</p><p>Please verify your email by clicking on the verification link below.<br/><a href=${textLink.toString()}>Verification Link</a></p>`;
-	// return sendMail(sender, user.email, `Account Verification`, mailBody);
+let getRole = function getRole(checkRole) {
+	let role;
+
+	switch (checkRole) {
+		case ROLES.ROLE_ADMIN: role = 3; break;
+		case ROLES.ROLE_SUBSCRIBER: role = 2; break;
+		case ROLES.ROLE_MEMBER: role = 1; break;
+		default: role = 1;
+	}
+
+	return role;
 };
 
-exports.sentMailForgotPassword = (user, token) => {
-	let textLink = "http://" + Config.express.host + ":" + Config.express.port + "/" + Config.email.resetEmailUrl + "/" + token;
-	let sender = `Barki Team<${Config.email.user}>`;
-	let mailBody = `<p>Please reset your password by clicking on the link below.<br/><a href=${textLink.toString()}>Reset Password Link</a></p>`;
-	// return sendMail(sender, user.email, `Account New password`, mailBody);
+
+module.exports = {
+	roleAuthorization,
+	getRole,
+	setUserInfo
 };
-
-function decrypt(password) {
-	let decipher = crypto.createDecipher(algorithm, privateKey);
-	let dec = decipher.update(password, 'hex', 'utf8');
-	dec += decipher.final('utf8');
-	return dec;
-}
-
-function encrypt(password) {
-	let cipher = crypto.createCipher(algorithm, privateKey);
-	let crypted = cipher.update(password.toString(), 'utf8', 'hex');
-	crypted += cipher.final('hex');
-	return crypted;
-}
-

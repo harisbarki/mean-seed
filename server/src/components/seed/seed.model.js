@@ -1,7 +1,6 @@
- 'use strict';
+'use strict';
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let uniqueValidator = require('mongoose-unique-validator');
 
 /* Sub-schema for file */
 let seedSubSchema = new Schema({
@@ -33,6 +32,8 @@ let seedSchema = new Schema({
 });
 
 let seedModel = mongoose.model('file', seedSchema);
+
+exports.model = seedModel;
 
 /**
  * Creates the fileM in the database

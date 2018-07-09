@@ -58,6 +58,10 @@ testem.log
 Thumbs.db
 
 
+# File uploads
+.uploads/
+src/public/upload/temp/*
+
 
 
 # Config files

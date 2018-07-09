@@ -1,65 +1,76 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
-let uniqueValidator = require('mongoose-unique-validator');
+// Importing Node packages required for schema
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const Schema = mongoose.Schema;
 
-/**
- * @module  User
- * @description contain the details of Attribute
- */
+const config = require('../../shared/config/config');
+const ROLES = require('../../shared/constants');
 
-let User = new Schema({
-
-	/**
-	 email. It can only contain valid email id, should be unique, is required and indexed.
-	 */
-	email: {
-		type: String,
-		unique: true,
-		required: true
+//= ===============================
+// User Schema
+//= ===============================
+const UserSchema = new Schema({
+		uuid: {
+			type: String,
+			unique: true,
+			required: true
+		},
+		email: {
+			type: String,
+			lowercase: true,
+			unique: true
+		},
+		password: {
+			type: String
+		},
+		profile: {
+			name: { type: String },
+		},
+		orcid: {
+			_id: { type: String },
+			access_token: { type: String },
+			refresh_token: { type: String }
+		},
+		role: {
+			type: String,
+			enum: [ROLES.ROLE_MEMBER, ROLES.ROLE_SUBSCRIBER, ROLES.ROLE_ADMIN],
+			default: ROLES.ROLE_MEMBER
+		},
+		resetPasswordToken: { type: String },
+		resetPasswordExpires: { type: Date }
 	},
+	{
+		timestamps: true
+	});
 
-	/**
-	 password. It can only contain string, is required field.
-	 */
-	password: {
-		type: String,
-		required: true
-	},
+//= ===============================
+// User ORM Methods
+//= ===============================
 
-	/**
-	 propertyId. It can only contain string.
-	 */
-	isVerified: {
-		type: Boolean,
-		default: false
-	}
+// Pre-save of user to database, hash password if password is modified or new
+UserSchema.pre('save', function (next) {
+	const user = this;
+
+	user.updatedAt = new Date();
+
+	if (!user.isModified('password')) return next();
+
+	bcrypt.hash(user.password, config.security.saltRounds, function(err, hash) {
+		// Store hash in your password DB.
+		if (err) return next(err);
+		console.log('hashed', hash);
+		user.password = hash;
+		next();
+	});
 });
 
-User.plugin(uniqueValidator);
+// Method to compare password for login
+UserSchema.methods.comparePassword = function (candidatePassword, cb) {
+	bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+		if (err) { return cb(err); }
 
-User.statics = {
-	saveUser: function (requestData) {
-		return this.create(requestData);
-	},
-	findUserUpdate: function (query, user) {
-		return this.findOneAndUpdate(query, user);
-	},
-	updateUser: function (user) {
-		return user.save();
-	},
-
-	findUser: function (query) {
-		return this.findOne(query);
-	},
-
-	findUserByIdAndEmail: function (id, email) {
-		return this.findOne({email: email, _id: id});
-	}
+		cb(null, isMatch);
+	});
 };
 
-let user = mongoose.model('user', User);
-
-/** export schema */
-module.exports = {
-	User: user
-};
+module.exports = mongoose.model('User', UserSchema);
