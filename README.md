@@ -10,8 +10,8 @@
 Run `npm start` to run the prod version.</br>
 Look in package.json for more npm scripts.</br>
 
-If you are running backend server and the hmr server. Please turn off cross scripting security for development. You can do that by this command:<br>
-<code>"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --user-data-dir="C:/Chrome dev session2" --disable-web-security</code>
+Run `npm run hmr` to run the hmr for client side.</br>
+Run `npm run back` to run the server code. This will watch the server code. This will also run it in debug mode with which you can debug in Chrome dev tools</br>
 
 ## Build
 
