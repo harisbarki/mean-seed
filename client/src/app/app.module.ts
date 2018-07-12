@@ -11,8 +11,7 @@ import {
 	AuthService,
 	AuthInterceptor,
 	AuthGuard,
-	AdminGuard,
-	FileManagerService,
+	AdminGuard
 } from './services';
 import {
 	NavbarComponent,
@@ -45,8 +44,7 @@ import { environment } from '../environments/environment';
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthInterceptor,
 			multi: true
-		},
-		FileManagerService
+		}
 	],
 	bootstrap: [AppComponent]
 })

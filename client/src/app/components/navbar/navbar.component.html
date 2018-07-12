@@ -18,25 +18,20 @@
 						<i class="fas fa-sign-in-alt fa-sm"></i> Login
 					</a>
 				</li>
-
 				<li class="nav-item">
 					<a class="nav-link" [routerLink]="['/contact']" routerLinkActive="active">
 						<i class="fas fa-contact fa-sm"></i> Contact
 					</a>
 				</li>
-				<li class="nav-item dropdown" *ngIf="user">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-file-code fa-sm"></i> Files
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['/search']" routerLinkActive="active">
+						<i class="fas fa-contact fa-sm"></i> Search
 					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" [routerLink]="['/file-manager']" routerLinkActive="active">
-							<i class="fas fa-file-alt fa-sm"></i> File Manager
-						</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" [routerLink]="['/upload']" routerLinkActive="active">
-							<i class="fas fa-cloud-upload-alt fa-sm"></i> Upload
-						</a>
-					</div>
+				</li>
+				<li class="nav-item" *ngIf="user">
+					<a class="nav-link" [routerLink]="['/upload']" routerLinkActive="active">
+						<i class="fas fa-contact fa-sm"></i> Upload
+					</a>
 				</li>
 				<li *ngIf="isUserAdmin">
 					<a class="nav-link" [routerLink]="['/admin-dashboard']" routerLinkActive="active">

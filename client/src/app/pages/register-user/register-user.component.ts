@@ -23,7 +23,7 @@ export class RegisterUserComponent implements OnInit, OnDestroy {
 		this.user = {email: '', password: ''};
 
 		if (this.authService.isLoggedIn()) {
-			this.router.navigateByUrl(this.authService.redirectUrl || '/profile');
+			this.router.navigateByUrl(this.authService.redirectUrl || '/upload');
 			this.authService.redirectUrl = null;
 		}
 
@@ -31,7 +31,7 @@ export class RegisterUserComponent implements OnInit, OnDestroy {
 		this.userSubscription = this.authService.loggedInUser.subscribe(user => {
 			if (user) {
 				console.log('user logged in, rerouting');
-				this.router.navigateByUrl(this.authService.redirectUrl || '/profile');
+				this.router.navigateByUrl(this.authService.redirectUrl || '/upload');
 				this.authService.redirectUrl = null;
 			}
 		})

@@ -9,7 +9,6 @@ import {
 	RegisterUserComponent,
 	ContactComponent,
 	UploadComponent,
-	FileManagerComponent,
 	AdminDashboardComponent
 } from './pages/';
 import {AdminGuard, AuthGuard} from "./services/";
@@ -23,7 +22,6 @@ export const routingComponents = [
 	RegisterUserComponent,
 	ContactComponent,
 	UploadComponent,
-	FileManagerComponent,
 	AdminDashboardComponent
 ];
 
@@ -33,8 +31,8 @@ const appRoutes: Routes = [
 	{path: 'login', component: LoginComponent},
 	{path: 'contact', component: ContactComponent},
 	{path: 'register', component: RegisterUserComponent},
+	{path: 'search', loadChildren: './modules/search/search.module#SearchModule'},
 	{path: 'upload', component: UploadComponent, canActivate: [AuthGuard], runGuardsAndResolvers: 'always'},
-	{path: 'file-manager', component: FileManagerComponent, canActivate: [AuthGuard], runGuardsAndResolvers: 'always'},
 	{path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard], runGuardsAndResolvers: 'always'},
 	{path: '**', component: NoContentComponent}
 ];
