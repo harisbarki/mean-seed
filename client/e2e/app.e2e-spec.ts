@@ -1,6 +1,6 @@
 import {MySolPage} from './app.po';
 
-describe('my-sol App', () => {
+describe('mean App', () => {
 	let page: MySolPage;
 
 	beforeEach(() => {

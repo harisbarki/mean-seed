@@ -26,11 +26,6 @@ const UserSchema = new Schema({
 		profile: {
 			name: { type: String },
 		},
-		orcid: {
-			_id: { type: String },
-			access_token: { type: String },
-			refresh_token: { type: String }
-		},
 		role: {
 			type: String,
 			enum: [ROLES.ROLE_MEMBER, ROLES.ROLE_SUBSCRIBER, ROLES.ROLE_ADMIN],

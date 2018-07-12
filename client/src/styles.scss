@@ -3,3 +3,9 @@
 @import "~bootstrap/scss/bootstrap";
 
 @import url("https://use.fontawesome.com/releases/v5.0.13/css/all.css");
+html,
+body {
+	margin:0;
+	padding:0;
+	height:100%;
+}

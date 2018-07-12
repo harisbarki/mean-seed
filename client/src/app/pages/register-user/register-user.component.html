@@ -1,0 +1,30 @@
+<div class="app-loading-img" *ngIf="loadingData"></div>
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+	<div class="d-flex flex-md-column" >
+		<div class="account-wall">
+			<form class="form-signin" #loginForm="ngForm" (ngSubmit)="register()">
+				<div class="alert alert-danger" style="margin: 0 30px 0 30px" *ngIf="errorMessage">
+					{{errorMessage}}
+				</div>
+				<img class="profile-img" src="assets/logo.png" alt="">
+				<h1 class="text-center login-title"><strong>MEAN</strong></h1>
+				<h1 class="text-center login-title">Register</h1>
+				<br>
+				<input type="text" class="form-control" placeholder="Email" required autofocus tabindex="1"
+					   [(ngModel)]="user.email" name="email">
+				<input type="password" class="form-control" placeholder="Password" required tabindex="2"
+					   [(ngModel)]="user.password" name="password">
+				<button class="btn btn-lg btn-primary btn-block" type="submit" tabindex="3">
+					Sign Up
+				</button>
+				<label class="checkbox pull-left" style="margin-left: 20px; margin-top: 10px;">
+					<input type="checkbox" value="remember-me">
+					Remember me
+				</label>
+				<a href="#" class="float-right need-help">Need help? </a><span class="clearfix"></span>
+				<a [routerLink]="['/login']" class="text-center new-account">Already have an account? Login </a>
+			</form>
+		</div>
+	</div>
+</div>

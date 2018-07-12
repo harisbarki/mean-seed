@@ -1,15 +1,53 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-	<div class="container-fluid">
-		<a class="navbar-brand" [routerLink]="['/']">Logo</a>
+	<div class="container">
+		<a class="navbar-brand" [routerLink]="['/']" style="padding-top: 5px">
+			<img src="assets/logo.png" style="height: 40px;">
+			<span *ngIf="isUserAdmin"
+				  style="background-color: #00B7FF; margin-left: 10px;font-size: xx-small; padding: 2px 4px 2px 2px; font-weight: bold">
+				Admin
+			</span>
+		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
 		<div class="collapse navbar-collapse justify-content-md-end" id="navbarsExample07">
 			<ul class="navbar-nav navbar-right">
-				<li><a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a></li>
-				<li><a class="nav-link" [routerLink]="['/about']" routerLinkActive="active">About</a></li>
-				<li><a class="nav-link" [routerLink]="['/search']" routerLinkActive="active">Search</a></li>
+				<li *ngIf="!user">
+					<a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">
+						<i class="fas fa-sign-in-alt fa-sm"></i> Login
+					</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="['/contact']" routerLinkActive="active">
+						<i class="fas fa-contact fa-sm"></i> Contact
+					</a>
+				</li>
+				<li class="nav-item dropdown" *ngIf="user">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-file-code fa-sm"></i> Files
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" [routerLink]="['/file-manager']" routerLinkActive="active">
+							<i class="fas fa-file-alt fa-sm"></i> File Manager
+						</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" [routerLink]="['/upload']" routerLinkActive="active">
+							<i class="fas fa-cloud-upload-alt fa-sm"></i> Upload
+						</a>
+					</div>
+				</li>
+				<li *ngIf="isUserAdmin">
+					<a class="nav-link" [routerLink]="['/admin-dashboard']" routerLinkActive="active">
+						<i class="fas fa-tachometer-alt fa-sm"></i> Admin Dashboard
+					</a>
+				</li>
+				<li *ngIf="user">
+					<a class="nav-link" (click)="logout()" routerLinkActive="active" style="cursor: pointer">
+						<i class="fas fa-sign-out-alt fa-sm"></i> Logout
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>

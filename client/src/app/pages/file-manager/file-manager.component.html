@@ -1,0 +1,75 @@
+<div class="container">
+	<h3>File Manager</h3>
+	<table class="table table-hover table-responsive-sm">
+		<thead>
+		<tr>
+			<th>File Name</th>
+			<th>Uploaded At</th>
+			<th>Status</th>
+			<th>Status Message</th>
+			<th>Actions</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr *ngFor="let pFile of files" style="cursor: pointer;"
+			[class]="pFile?.fileInformation?.statusCode === 200 ? 'table-success' : pFile?.fileInformation?.statusCode === 102 ? 'table-warning' : 'table-danger'"
+			(click)="showFileModel(pFile)">
+			<td>{{pFile?.fileInformation?.originalFileName}}</td>
+			<td>{{pFile?.createdAt | date}}</td>
+			<td>{{pFile?.fileInformation?.statusCode}}</td>
+			<td>{{pFile?.fileInformation?.statusMessage}}</td>
+			<td>
+				<i class="fas fa-sync" style="color: forestgreen"
+				   *ngIf="pFile?.fileInformation?.statusCode !== 200 && pFile?.fileInformation?.statusCode !== 102">
+				</i>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<!-- Modal -->
+	<div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-labelledby="fileModalCenterTitle"
+		 aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">
+						{{expandedFile?.fileInformation?.originalFileName}}
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table table-responsive-sm">
+						<thead>
+						<tr>
+							<th>File Name</th>
+							<th>Status</th>
+							<th>Status Message</th>
+							<th>Actions</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr *ngFor="let pFile of expandedFile?.filesCML"
+							[class]="pFile?.statusCode === 200 ? 'table-success' : pFile?.statusCode === 102 ? 'table-warning' : 'table-danger'">
+							<td>{{pFile?.originalFileName}}</td>
+							<td>{{pFile?.statusCode}}</td>
+							<td>{{pFile?.statusMessage}}</td>
+							<td>
+								<i class="fas fa-sync" style="color: forestgreen"
+								   *ngIf="pFile?.statusCode !== 200 && pFile?.statusCode !== 102">
+								</i>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

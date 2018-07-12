@@ -1,0 +1,97 @@
+<div class="container-fluid" style="margin-top: 20px">
+	<div class="row">
+		<div class="col-md-12">
+
+			<h3>Upload queue</h3>
+			<p>Queue length: {{ uploader?.queue?.length }}</p>
+
+			<div class="table-responsive">
+				<table class="table table-hover table-sm">
+					<thead>
+					<tr>
+						<th>Name</th>
+						<th>Size</th>
+						<th>Progress</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr *ngFor="let item of uploader.queue">
+						<td><strong>{{ item?.file?.name }}</strong></td>
+						<td nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+						<td>
+							<div class="progress" style="margin-bottom: 0;">
+								<div class="progress-bar" role="progressbar"
+									 [ngStyle]="{ 'width': item.progress + '%' }"></div>
+							</div>
+						</td>
+						<td class="text-center">
+							<span *ngIf="item.isSuccess"><i class="fa fa-check-circle"></i></span>
+							<span *ngIf="item.isCancel"><i class="fa fa-ban"></i></span>
+							<span *ngIf="item.isError"><i class="fa fa-exclamation-circle"></i></span>
+							<span *ngIf="item.isUploading"><i class="fas fa-spinner fa-pulse"></i></span>
+						</td>
+						<td nowrap>
+							<button type="button" class="btn btn-success btn-sm"
+									(click)="item.upload()"
+									[disabled]="item.isReady || item.isUploading || item.isSuccess">
+								<span class="fa fa-cloud-upload-alt"></span>
+							</button>
+							<button type="button" class="btn btn-danger btn-sm"
+									(click)="item.remove()">
+								<span class="fa fa-trash"></span>
+							</button>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div>
+				Queue progress:
+				<div class="progress" style="">
+					<div class="progress-bar" role="progressbar"
+						 [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+				</div>
+			</div>
+			<button type="button" class="btn btn-success btn-s"
+					(click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+				<span class="fa fa-cloud-upload-alt"></span> Upload all
+			</button>
+			<button type="button" class="btn btn-danger btn-s"
+					(click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+				<span class="fa fa-trash"></span> Clear queue
+			</button>
+
+		</div>
+
+		<div class="col-md-12" style="margin-top: 20px;">
+
+			<h3>Select files</h3>
+
+			<div ng2FileDrop
+				 [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+				 (fileOver)="fileOverBase($event)"
+				 [uploader]="uploader"
+				 class="well my-drop-zone align-middle" style="height: 175px;">
+				<div style="height: 100%; vertical-align: middle; background-color:
+						#ffdf80; text-align: center; padding-top: 45px; font-size: large;
+						font-weight: bold;">File drop
+					zone
+				</div>
+			</div>
+
+			<div class="custom-file" id="customFile" lang="es">
+				<input type="file" class="custom-file-input" id="exampleInputFile" ng2FileSelect
+					   [uploader]="uploader" multiple accept=".cml, application/gzip"
+					   aria-describedby="fileHelp">
+				<label class="custom-file-label" for="exampleInputFile">
+					<strong>Select Files</strong>
+				</label>
+			</div>
+		</div>
+
+	</div>
+
+</div>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-sol": {
+    "mean-seed": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -18,7 +18,9 @@
             "polyfills": "src/polyfills.ts",
             "assets": [
               "src/assets",
-              "src/favicon.ico"
+			  "src/robots.txt",
+              "src/favicon.ico",
+              "src/manifest.json"
             ],
             "styles": [
               "src/styles.scss"
@@ -53,28 +55,29 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
-              ]
+              ],
+              "serviceWorker": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "my-sol:build"
+            "browserTarget": "mean-seed:build"
           },
           "configurations": {
             "hmr": {
-              "browserTarget": "my-sol:build:hmr"
+              "browserTarget": "mean-seed:build:hmr"
             },
             "production": {
-              "browserTarget": "my-sol:build:production"
+              "browserTarget": "mean-seed:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "my-sol:build"
+            "browserTarget": "mean-seed:build"
           }
         },
         "test": {
@@ -87,14 +90,18 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
               "node_modules/tether/dist/js/tether.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+              "src/assets/ChemDoodleWeb.js",
+              "src/assets/uis/ChemDoodleWeb-uis.js"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/ChemDoodleWeb.css"
             ],
             "assets": [
               "src/assets",
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/manifest.json"
             ]
           }
         },
@@ -110,7 +117,7 @@
         }
       }
     },
-    "my-sol-e2e": {
+    "mean-seed-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -119,7 +126,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "my-sol:serve"
+            "devServerTarget": "mean-seed:serve"
           }
         },
         "lint": {
@@ -134,7 +141,7 @@
       }
     }
   },
-  "defaultProject": "my-sol",
+  "defaultProject": "mean-seed",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
