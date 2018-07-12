@@ -11,9 +11,6 @@ let upload = multer({dest: './uploads'});
 
 router.post('/upload', requireAuth, upload.single('files'), async (req, res) => {
 	try {
-		// will process the file
-		FileCtrl.processLocalFile(req.file, req.user);
-
 		let response = {fileName: req.file.filename, originalName: req.file.originalname};
 		res.send(response);
 	} catch (err) {
