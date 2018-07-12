@@ -4,7 +4,7 @@ import {FileUploader} from 'ng2-file-upload';
 import {environment} from '../../../environments/environment';
 import {AuthService} from "../../services/";
 
-let URL = '/api/file-manager/upload';
+let URL = '/api/upload';
 URL = environment.host + URL;
 
 @Component({

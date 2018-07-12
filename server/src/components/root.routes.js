@@ -4,6 +4,7 @@ const express = require('express');
 
 let config = require('../shared/config/config');
 // Routes
+let uploadRoutes = require('./upload/upload.routes');
 let userRoutes = require('./user/user.routes');
 let authRoutes = require('./user/authentication.routes');
 let seedRoutes = require('./seed/seed.routes');
@@ -31,6 +32,7 @@ module.exports = function(app) {
 
 	app.use('/api', apiRoutes);	// everything encapsulates within api/
 	apiRoutes.use('/auth', authRoutes);
+	apiRoutes.use('/upload', uploadRoutes);
 	apiRoutes.use('/user', userRoutes);
 	apiRoutes.use('/seed', seedRoutes);
 	apiRoutes.use('/contact-us', contactUsRoutes);
