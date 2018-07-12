@@ -4,16 +4,15 @@ let multer = require('multer');
 let passport = require('passport');
 let jwt = require('jsonwebtoken');
 
-
 // Middleware to require login/auth
 const requireAuth = passport.authenticate('jwt', { session: false });
 
 let upload = multer({dest: './uploads'});
 
-router.post('/', requireAuth, upload.single('files'), async (req, res) => {
+router.post('/upload', requireAuth, upload.single('files'), async (req, res) => {
 	try {
 		// will process the file
-		console.log(req.file);
+		FileCtrl.processLocalFile(req.file, req.user);
 
 		let response = {fileName: req.file.filename, originalName: req.file.originalname};
 		res.send(response);
@@ -21,3 +20,5 @@ router.post('/', requireAuth, upload.single('files'), async (req, res) => {
 		res.sendStatus(400);
 	}
 });
+
+module.exports = router;

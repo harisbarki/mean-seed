@@ -32,7 +32,7 @@ module.exports = function(app) {
 
 	app.use('/api', apiRoutes);	// everything encapsulates within api/
 	apiRoutes.use('/auth', authRoutes);
-	apiRoutes.use('/upload', uploadRoutes);
+	// apiRoutes.use('/upload', uploadRoutes);
 	apiRoutes.use('/user', userRoutes);
 	apiRoutes.use('/seed', seedRoutes);
 	apiRoutes.use('/contact-us', contactUsRoutes);
